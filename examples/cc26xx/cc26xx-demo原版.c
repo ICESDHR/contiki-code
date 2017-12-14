@@ -127,7 +127,6 @@ AUTOSTART_PROCESSES(&cc26xx_demo_process);
  * Update sensor readings in a staggered fashion every SENSOR_READING_PERIOD
  * ticks + a random interval between 0 and SENSOR_READING_RANDOM ticks
  */
-// CLOCK_CONF_SECOND 128
 #define SENSOR_READING_PERIOD (CLOCK_SECOND * 20)
 #define SENSOR_READING_RANDOM (CLOCK_SECOND << 4)
 
@@ -150,7 +149,6 @@ print_mpu_reading(int reading)
   printf("%d.%02d", reading / 100, reading % 100);
 }
 /*---------------------------------------------------------------------------*/
-// 读取温度和压力
 static void
 get_bmp_reading()
 {
@@ -177,7 +175,6 @@ get_bmp_reading()
   ctimer_set(&bmp_timer, next, init_bmp_reading, NULL);
 }
 /*---------------------------------------------------------------------------*/
-// tmp007传感器读取温度
 static void
 get_tmp_reading()
 {
@@ -203,9 +200,9 @@ get_tmp_reading()
   ctimer_set(&tmp_timer, next, init_tmp_reading, NULL);
 }
 /*---------------------------------------------------------------------------*/
-// hdc1000传感器读取湿度
 static void
 get_hdc_reading()
+{
   int value;
   clock_time_t next = SENSOR_READING_PERIOD +
     (random_rand() % SENSOR_READING_RANDOM);
@@ -227,7 +224,6 @@ get_hdc_reading()
   ctimer_set(&hdc_timer, next, init_hdc_reading, NULL);
 }
 /*---------------------------------------------------------------------------*/
-// 环境光传感器opt3001读取光照强度
 static void
 get_light_reading()
 {
@@ -246,7 +242,6 @@ get_light_reading()
   ctimer_set(&opt_timer, next, init_opt_reading, NULL);
 }
 /*---------------------------------------------------------------------------*/
-// 9轴运动传感器mpu9250读取九轴加速度
 static void
 get_mpu_reading()
 {
@@ -320,7 +315,6 @@ init_mpu_reading(void *not_used)
 }
 #endif
 /*---------------------------------------------------------------------------*/
-// 读取电池温度与电压
 static void
 get_sync_sensor_readings(void)
 {
