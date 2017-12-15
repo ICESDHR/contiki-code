@@ -52,23 +52,27 @@
 #include <stdlib.h>
 /*---------------------------------------------------------------------------*/
 /* Normal mode duration params in seconds */
-#define NORMAL_OP_DURATION_DEFAULT 10
+// 正常模式持续时间参数以秒为单位
+#define NORMAL_OP_DURATION_DEFAULT 10 //正常运行时间默认
 #define NORMAL_OP_DURATION_MIN     10
 #define NORMAL_OP_DURATION_MAX     60
 /*---------------------------------------------------------------------------*/
 /* Observer notification period params in seconds */
-#define PERIODIC_INTERVAL_DEFAULT  30
+// 观察员通知期限在几秒钟内
+#define PERIODIC_INTERVAL_DEFAULT  30 //默认定期间隔
 #define PERIODIC_INTERVAL_MIN      30
 #define PERIODIC_INTERVAL_MAX      86400 /* 1 day */
 /*---------------------------------------------------------------------------*/
+// 深度睡眠开关
 #define VERY_SLEEPY_MODE_OFF 0
 #define VERY_SLEEPY_MODE_ON  1
 /*---------------------------------------------------------------------------*/
 #define MAC_CAN_BE_TURNED_OFF  0
 #define MAC_MUST_STAY_ON       1
 
-#define KEEP_MAC_ON_MIN_PERIOD 10 /* secs */
+#define KEEP_MAC_ON_MIN_PERIOD 10 /* secs */ //保持开的最小时间为10秒
 /*---------------------------------------------------------------------------*/
+// CLOCK_CONF_SECOND 128
 #define PERIODIC_INTERVAL         CLOCK_SECOND
 /*---------------------------------------------------------------------------*/
 #define POST_STATUS_BAD           0x80
@@ -79,15 +83,15 @@
 /*---------------------------------------------------------------------------*/
 typedef struct sleepy_config_s {
   unsigned long interval;
-  unsigned long duration;
+  unsigned long duration;//持续时间
   uint8_t mode;
 } sleepy_config_t;
 
 sleepy_config_t config;
 /*---------------------------------------------------------------------------*/
-#define STATE_NORMAL           0
-#define STATE_NOTIFY_OBSERVERS 1
-#define STATE_VERY_SLEEPY      2
+#define STATE_NORMAL           0 //正常状态
+#define STATE_NOTIFY_OBSERVERS 1 //观察状态
+#define STATE_VERY_SLEEPY      2 //深度睡眠状态
 /*---------------------------------------------------------------------------*/
 static struct stimer st_duration;
 static struct stimer st_interval;

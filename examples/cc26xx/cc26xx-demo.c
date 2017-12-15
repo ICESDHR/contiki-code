@@ -336,6 +336,7 @@ get_sync_sensor_readings(void)
   printf("Bat: Volt=%d mV\n", (value * 125) >> 5);
 
 #if BOARD_SMARTRF06EB
+  // als_sensor代表光线传感器
   SENSORS_ACTIVATE(als_sensor);
 
   value = als_sensor.value(0);
