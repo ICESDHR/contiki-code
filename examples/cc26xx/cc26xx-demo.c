@@ -206,6 +206,7 @@ get_tmp_reading()
 // hdc1000传感器读取湿度
 static void
 get_hdc_reading()
+{
   int value;
   clock_time_t next = SENSOR_READING_PERIOD +
     (random_rand() % SENSOR_READING_RANDOM);
