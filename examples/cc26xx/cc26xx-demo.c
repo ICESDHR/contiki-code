@@ -247,14 +247,14 @@ get_light_reading()
   ctimer_set(&opt_timer, next, init_opt_reading, NULL);
 }
 /*---------------------------------------------------------------------------*/
-// 9轴运动传感器mpu9250读取九轴加速度
+// 9轴运动传感器mpu9250读取九轴加速度（角速度，加速度，磁感应强度）
 static void
 get_mpu_reading()
 {
   int value;
   clock_time_t next = SENSOR_READING_PERIOD +
     (random_rand() % SENSOR_READING_RANDOM);
-
+  //角速度
   printf("MPU Gyro: X=");
   value = mpu_9250_sensor.value(MPU_9250_SENSOR_TYPE_GYRO_X);
   print_mpu_reading(value);
@@ -269,7 +269,7 @@ get_mpu_reading()
   value = mpu_9250_sensor.value(MPU_9250_SENSOR_TYPE_GYRO_Z);
   print_mpu_reading(value);
   printf(" deg/sec\n");
-
+  //加速度
   printf("MPU Acc: X=");
   value = mpu_9250_sensor.value(MPU_9250_SENSOR_TYPE_ACC_X);
   print_mpu_reading(value);
